@@ -1,6 +1,6 @@
 ## Examples
 
-**Pythonpad** comes with a number of educational libraries that can help students learning basic programming concepts with Python language. 
+**Pythonpad** comes with several educational libraries that help students learning basic programming concepts with Python language. 
 
 ### CS1Robots
 
@@ -16,7 +16,7 @@ Pythonpad supports RUR-PLE inspired cs1robots library. Students can create and m
 
 ### CS1Media
 
-Pythonpad supports cs1media library for manipulating images. Students can create or load an image and edit color of each pixel in the image.
+Pythonpad supports cs1media library for manipulating images. Students can create or load an image and edit the color of each pixel in the image.
 
 *Original version of cs1media based on Tk and PIL is written by Anonymous.*
 
@@ -62,7 +62,7 @@ Pythonpad supports auto-grading if there is a file `.grader.py` on its file syst
 
 Pythonpad can be used to serve an interactive programming course on a static website, like this *GitHub Pages* website.
 
-Click the button below to see exercise more examples designed for a introductory Python course.
+Click the button below to see exercise more examples designed for an introductory Python course.
 
 <a class="button" href="/docs/exercises.html">
     See more examples

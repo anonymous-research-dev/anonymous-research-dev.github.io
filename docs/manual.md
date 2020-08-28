@@ -1,9 +1,9 @@
 ## User Manual
 
-Pythonpad is a intergrated programming environment for education, that can be embedded in web pages. 
+Pythonpad is an integrated programming environment for education, that can be embedded in web pages. 
 It is a Vue.js component so you can easily use it in your Vue.js project, or you can use our simple helper module that allows you to use the Pythonpad component without actually using Vue.js API at all. 
 
-Pythonpad is a ready-made JavaScript module that is designed to be used in web-based online programming classes with minimum efforts. Pythonpad works with a CodeMirror-based code editor, a JSON-based tiny file system with simple file browser UI, and a Brython-based Python code executer. It only requires you to prepare a skeleton code and optionally, a grading script. Users' code is saved in their local web browser with `localStorage` object by default, so you don't even have to worry about that. 
+Pythonpad is a ready-made JavaScript module designed to be used in web-based online programming classes with minimum efforts. Pythonpad works with a CodeMirror-based code editor, a JSON-based tiny file system with simple file browser UI, and a Brython-based Python code executer. It only requires you to prepare a skeleton code and optionally, a grading script. Users' code is saved in their local web browser with `localStorage` object by default, so you don't even have to worry about that. 
 
 ### Basic Usage
 
@@ -27,7 +27,7 @@ The easiest way to use Pythonpad is to simply load the required scripts and styl
 </html>
 ```
 
-`Pythonpad(target, data)` function requires two parameters. `target` should be either a target DOM element's id attribute in a string value, or an actual target DOM element object. `data` should be a JavaScript object with various information for initializing the Pythonpad. Here is an example. 
+`Pythonpad(target, data)` function requires two parameters. `target` should be either a target DOM element's id attribute as a string value or an actual target DOM element object. `data` should be a JavaScript object with various information for initializing the Pythonpad. Here is an example. 
 
 ```javascript
 {
@@ -43,7 +43,7 @@ The easiest way to use Pythonpad is to simply load the required scripts and styl
 }
 ```
 
-You can include following values in the `data` object:
+You can include the following values in the `data` object:
 
 **id**: A unique ID for this "project". When default `localStorage` based code saving and loading is used, this ID is used to distinguish the saved code for this project from others. 
 
@@ -55,19 +55,19 @@ You can include following values in the `data` object:
 
 ### Use Sandbox to Create Exercise Projects
 
-One easy way to generate this `data` object, is to use the [Sandbox](/docs/sandbox.html) project which is available on the menu at the top of this web page, or right here.
+One easy way to generate this `data` object is to use the [Sandbox](/docs/sandbox.html) project, which is available on the menu at the top of this web page, or right here.
 
 <iframe src="/pad.html?p=sandbox" class="u-pad-frame" frameborder="0"></iframe>
 
 <a class="button" href="/pad.html?p=sandbox" target="_blank">Open in a New Window</a>
 
-Unlike other example projects in this website, Sandbox has a **Download** button at the bottom of its programming environment. When you click the button, you can download the current state of your Sandbox project as a `sandbox.pypad.json` file. 
+Unlike other example projects on this website, Sandbox has a **Download** button at the bottom of its programming environment. When you click the button, you can download your Sandbox project's current state as a `sandbox.pypad.json` file. 
 
-The downloaded `pypad.json` file is in a JSON format, and has `id`, `title`, `src`, and `files` value. And of course, you can directly use this object as a `data` object to feed your Pythonpad instance. Just edit `id` and `title` if you need to. 
+The downloaded `pypad.json` file is in a JSON format and has `id`, `title`, `src`, and `files` value. And of course, you can directly use this object as a `data` object to feed your Pythonpad instance. Just edit `id` and `title` if you need to. 
 
 ### Grading Script
 
-If you want to provide an auto-grading feature in your exercise project, create a file named `.grader.py` in the root directory of your project. 
+If you want to provide an auto-grading feature in your exercise project, create a file named `.grader.py` in your project's root directory. 
 As you have found out already, the **Run** button at the bottom of the Pythonpad programming environment runs the `main.py` file in the project. 
 If there is `.grader.py` file in the root of the project, the **Grade** button will show up at the bottom of the programming environment. And of course, that button will run the `.grader.py` file in this environment. 
 
