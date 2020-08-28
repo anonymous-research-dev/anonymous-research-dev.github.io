@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" class="">
+
+<head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon.ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="/style/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/style/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/style/common.css">
+    <link rel="stylesheet" type="text/css" href="/style/highlightjs/atom-one-light.css">
+    <script src="/script/axios.min.js"></script>
+    <script src="/script/vue.min.js"></script>
+    <script src="/script/vue-markdown.js"></script>
+    <script src="/script/pythonpad.bundle.js"></script>
+    <script src="/script/examples.js"></script>
+    <script src="/script/highlight.pack.js"></script>
+    <script src="/script/common.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <title>Pythonpad</title>
+</head>
+
+<body>
+    <nav class="navbar has-background-grey-lighter" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="/images/brand_black.png" class="u-nav-brand">
+            </a>
+        </div>
+    
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/">Home</a>
+                <a class="navbar-item" href="/docs/examples.html">Examples</a>
+                <a class="navbar-item" href="/docs/manual.html">Manual</a>
+                <a class="navbar-item" href="/docs/sandbox.html">Sandbox</a>
+            </div>
+        </div>
+    </nav>
+    <div class="u-narrow-container">
+        <div class="u-padded">
+            <div class="content" id="doc">
+                <vue-markdown v-if="source !== null" :source="source"></vue-markdown>
+                <div style="height: 5rem"> <!-- vspace -->
+            </div>
+        </div>
+    </div>
+    <script>
+        Vue.use(VueMarkdown);
+        new Vue({
+            el: '#doc',
+            data: {
+                source: null,
+            },
+            mounted() {
+                this.loadContent()
+            },
+            methods: {
+                async loadContent() {
+                    const params = window.getSearchParameters()
+                    window.history.replaceState(null, null, `/docs/${params.p}.html`)
+                    try {
+                        const res = await axios.get(`/docs/${params.p}.md`)
+                        this.source = res.data
+                        this.$nextTick(() => {
+                            document.querySelectorAll('pre code').forEach((block) => {
+                                hljs.highlightBlock(block);
+                            });
+                        })
+                    } catch (err) {
+                        this.source = 'Failed to load.'
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
